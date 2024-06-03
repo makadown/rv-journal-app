@@ -1,7 +1,11 @@
-import React from 'react'
+import { MailOutline } from "@mui/icons-material"
+import { Typography } from "@mui/material"
 
 export const LoginPage = () => {
   return (
-    <div>LoginPage</div>
+    <>
+      <Typography variant="h1">Login Page</Typography>
+      <MailOutline />
+    </>
   )
 }

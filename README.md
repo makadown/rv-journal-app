@@ -14,6 +14,7 @@ https://reactrouter.com/en/main/upgrading/reach#install-react-router-v6
 
 Material UI
 ```
+https://mui.com/material-ui/getting-started/installation/
 https://mui.com/material-ui/guides/minimizing-bundle-size/#development-environment
 ```
 
