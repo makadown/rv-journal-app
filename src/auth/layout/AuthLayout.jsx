@@ -22,7 +22,7 @@ export const AuthLayout = ({ children, title ='' }) => {
                         borderRadius: 2
                     }}
                 >
-                    <Typography variant="h5" sx={{ mb: 1 }}> {title}</Typography>
+                    <Typography variant="h5" sx={{ mb: 1 }}> Journal App {title}</Typography>
                     {
                         /* Login / Register form or any other form  */
                         children
