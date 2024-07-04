@@ -3,24 +3,47 @@ import { Grid, Typography, TextField, Button, Link, Tooltip } from "@mui/materia
 // Giving the alias "Link" to RouterLink to avoid problems with the <Link> element of material ui
 import { Link as RouterLink } from "react-router-dom";
 import { AuthLayout } from "../layout/AuthLayout";
+import { useForm } from "../../hooks";
+import { checkingAuthentication, startGoogleSignIn } from "../../store/auth/thunks";
+import { useDispatch } from "react-redux";
 
 
 export const LoginPage = () => {
+
+  const dispatch = useDispatch()
+
+  const { email, password, onInputChange } = useForm({
+    email: 'usuario@mail.com',
+    password: '123456',
+  });
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log({ email, password });
+    dispatch(checkingAuthentication());
+  }
+
+  const onGoogleSignIn = () => {
+    console.log('onGoogleSignIn');
+    dispatch( startGoogleSignIn() );
+  }
 
   return (
     <>
       {/* Using material, inside a Grid element, create a form for login centered on the screen  */}
 
       <AuthLayout title="Login" >
-        <form>
+        <form onSubmit={onSubmit}>
           <Grid container>
 
             <Grid item xs={12} sx={{ mt: 1 }} >
-              <TextField type="email" label="Email" variant="outlined" fullWidth />
+              <TextField type="email" label="Email" fullWidth
+                name="email" value={email} onChange={onInputChange} />
             </Grid>
 
-            <Grid item xs={12} sx={{ mt: 1 }}>
-              <TextField type="password" label="Password" variant="outlined" fullWidth />
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField type="password" label="Password" fullWidth
+                name="password" value={password} onChange={onInputChange} />
             </Grid>
 
             <Grid container spacing={2} sx={{ mt: 0.5, mb: 1 }}>
@@ -31,7 +54,7 @@ export const LoginPage = () => {
               </Grid>
               <Grid item xs={12} sm={6} >
                 <Tooltip title="Login with Google" arrow>
-                  <Button type="submit" variant="contained" fullWidth  >
+                  <Button onClick={onGoogleSignIn} variant="contained" fullWidth  >
                     <Google />
                     <Typography sx={{ ml: 1 }}> Google </Typography>
                   </Button>
